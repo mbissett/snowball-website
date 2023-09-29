@@ -1,0 +1,93 @@
+[% header('Character codes') %]
+
+<p>
+Snowball (since version 2.0) supports specifying non-ASCII characters using
+the standard Unicode notation <code>U+XXXX</code> where XXXX is a string of
+hex digits.  However, this doesn't make for very readable source code, so the
+Snowball scripts on this site define more mnemonic representations of the
+non-ASCII characters which they use - for example, the German stemmer includes
+the lines
+</p>
+
+[% highlight('
+    /* special characters */
+
+    stringdef a"   ' _ "'{U+00E4}'" _ '
+    stringdef o"   ' _ "'{U+00F6}'" _ '
+    stringdef u"   ' _ "'{U+00FC}'
+    stringdef ss   '{U+00DF}'
+") %]
+
+<p>
+(In Unicode, hex values E4, F6, FC and DF are the numeric values
+of characters <B><I>&auml;</I></B>, <B><I>&ouml;</I></B>, <B><I>&uuml;</I></B> and <B><I>&szlig;</I></B> respectively.)
+</p>
+
+<p>
+Then the code which follows uses [% highlight_inline("'{a" _ '"' _ "}'") %] when it wants
+<B><I>&auml;</I></B>, etc.
+</p>
+
+<p>
+Using literal Unicode character in strings in the source file may work in some
+cases, but isn't really supported - the snowball compiler doesn't (currently at
+least) have the concept of "source character set", so at best you'll limit
+which programming languages your stemmer can be used with.
+</p>
+
+<p>
+If you wish to describe other Latin-alphabet based codesets for use in stemmers
+we recommend using the following conventions:
+</p>
+
+<DL><DD><TABLE CELLPADDING=0>
+<TR><TD> <I>accent</I> <TD></TD><TD> <I>ASCII form</I> <TD></TD><TD> <I>example</I>
+<TR><TD> acute  <TD></TD><TD> single quote <TD></TD><TD> &nbsp;<code>e'</code> for &eacute;
+<TR><TD> grave  <TD></TD><TD> grave <TD></TD><TD> &nbsp;<code>a`</code> for &agrave;
+<TR><TD> umlaut <TD></TD><TD> double quote <TD></TD><TD> &nbsp;<code>u"</code> for &uuml;
+<TR><TD> circumflex  <TD></TD><TD> circumflex <TD></TD><TD> &nbsp;<code>i^</code> for &icirc;
+<TR><TD> cedilla  <TD></TD><TD> letter c <TD></TD><TD> &nbsp;<code>cc</code> for &ccedil;
+<TR><TD> tilde  <TD></TD><TD> tilde <TD></TD><TD> &nbsp;<code>n~</code> for &ntilde;
+<TR><TD> ring  <TD></TD><TD> letter o <TD></TD><TD> &nbsp;<code>ao</code> for &aring;
+<TR><TD> line through  <TD></TD><TD> solidus <TD></TD><TD> &nbsp;<code>o/</code> for &oslash;
+<!-- Martin originally proposed 'b' here for any future use, but the Romanian stemmer
+     as implemented uses '+'. -->
+<TR><TD> breve <TD></TD><TD> plus <TD></TD><TD> &nbsp;<code>a+</code> for &#x103;
+<TR><TD> double acute <TD></TD><TD> letter q <TD></TD><TD> &nbsp;<code>oq</code> for &#x151;
+<TR><TD> comma below <TD></TD><TD> , <TD></TD><TD> &nbsp;<code>t,</code> for &#x21B;
+</TABLE></DL>
+
+<p>
+And, should they ever arise, use &nbsp;<code>r</code>&nbsp; for left and right
+hook (as in Polish), and &nbsp;<code>v</code>&nbsp; for hacek (as in Czech).
+</p>
+
+<p>
+The &#8216;line-through&#8217; accent covers a numbers of miscellaneous cases: the
+Scandinavian &nbsp;<code>o/</code>, Icelandic &nbsp;<code>d/</code>&nbsp; and Polish &nbsp;<code>l/</code>.
+</p>
+
+<p>
+Use &nbsp;<code>ae</code>&nbsp; and &nbsp;<code>ss</code>&nbsp; for <B><I>&aelig;</I></B> ligature and the German
+<B><I>&szlig;</I></B>, with
+upper case forms &nbsp;<code>AE</code>&nbsp; and &nbsp;<code>SS</code>. Use &nbsp;<code>th</code>&nbsp; for Icelandic thorn.
+</p>
+
+<p>
+We used to recommend <code>,</code> for cedilla, but we need a way to
+represent comma-below for Romanian, so we've repurposed <code>,</code>
+for that and now recommend <code>c</code> for cedilla instead.
+</p>
+
+<p>
+If you're writing a new stemmer, see below for a file of suitable
+<code>stringdef</code> lines you can cut and paste into your code.
+</p>
+
+<h2>Links</h2>
+
+<ul>
+<li> <a href="latin-stringdef-list.txt"><code>stringdef</code> list for Latin alphabets</a>
+</ul>
+
+[% footer %]

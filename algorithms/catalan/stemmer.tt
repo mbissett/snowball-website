@@ -1,0 +1,33 @@
+[% header('Catalan stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+<li> <A HREF="/algorithms/romance.html"> Romance language stemmers</A>
+[% algorithm_lis('catalan', 'Catalan') %]
+</ul>
+
+[% algorithm_vocab([12, 'abatuda', 'gore']) %]
+
+<p>
+Letters in Catalan include the following accented forms,
+</p>
+
+<DL><DD>
+    <B><I>á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  à  &nbsp;  è  &nbsp;  ì  &nbsp;  ò  &nbsp;  ù &nbsp; ü  &nbsp; ï</I></B>
+</DL>
+
+<p>
+The following letters are vowels:
+</p>
+
+<DL><DD>
+    <B><I>a  &nbsp;  e  &nbsp;  i  &nbsp;  o  &nbsp;  u  &nbsp;  á  &nbsp;  é  &nbsp;  í  &nbsp;  ó  &nbsp;  ú  &nbsp;  ü   &nbsp;  ï</I></B>
+</DL>
+
+
+<h2>The stemming algorithm</h2>
+
+[% highlight_file('catalan') %]
+
+[% footer %]

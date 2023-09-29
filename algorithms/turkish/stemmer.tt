@@ -1,0 +1,47 @@
+[% header('Turkish stemming algorithm') %]
+
+<h2>Links to resources</h2>
+
+<ul>
+[% algorithm_lis('turkish', 'Turkish') %]
+<li> <a href="accompanying_paper.doc">  Accompanying description</a> (this is a &nbsp;<code>.doc</code>&nbsp; file)
+</ul>
+
+<p>
+The Turkish stemming algorithm was provided by Evren Kapusuz Cilden.  It stems
+only noun and nominal verb suffixes because noun stems are more important for
+information retrieval, and only handling these simplifies the algorithm
+significantly.
+</p>
+
+<p>
+In her paper (linked above) Evren explains
+</p>
+
+<blockquote>
+<p>
+The stemmer can be enhanced to stem all kinds of verb suffixes. In Turkish,
+there are over fifty suffixes that can be affixed to verbs [2]. The
+morphological structure of verb suffixes is more complicated than noun
+suffixes. Despite this, one can use the methodology presented in this paper to
+enhance the stemmer to find stems of all kinds of Turkish words.
+</p>
+</blockquote>
+
+<p>where [2] is a reference to the following paper:</p>
+
+<DL><DD>
+<p>
+Gulsen Eryigit and Esref Adali.
+<B><I>An Affix Stripping Morphological Analyzer for Turkish</I></B>
+Proceedings of the <FONT SIZE=-1>IAESTED</FONT> International
+Conference
+<FONT SIZE=-1>ARTIFICIAL INTELLIGENCE AND APPLICATIONS</FONT>, February 16-18,2004, Innsbruck, Austria.
+</p>
+</DL>
+
+<h2>The algorithm in Snowball</h2>
+
+[% highlight_file('turkish') %]
+
+[% footer %]
