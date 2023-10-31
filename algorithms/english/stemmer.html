@@ -850,10 +850,11 @@ The definition of the English stemmer above is therefore supplemented by the fol
 
 <span class="kr">externals</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">stem</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
-<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">v_WXY</span><span class="w"> </span><span class="n">valid_LI</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kr">groupings</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">aeo</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="n">v_WXY</span><span class="w"> </span><span class="n">valid_LI</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 
 <span class="kr">stringescapes</span><span class="w"> </span><span class="se">{}</span><span class="w"></span>
 
+<span class="kr">define</span><span class="w"> </span><span class="n">aeo</span><span class="w">      </span><span class="s1">&#39;aeo&#39;</span><span class="w"></span>
 <span class="kr">define</span><span class="w"> </span><span class="n">v</span><span class="w">        </span><span class="s1">&#39;aeiouy&#39;</span><span class="w"></span>
 <span class="kr">define</span><span class="w"> </span><span class="n">v_WXY</span><span class="w">    </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;wxY&#39;</span><span class="w"></span>
 
@@ -915,14 +916,17 @@ The definition of the English stemmer above is therefore supplemented by the fol
 <span class="w">            </span><span class="s1">&#39;ed&#39;</span><span class="w"> </span><span class="s1">&#39;edly&#39;</span><span class="w"> </span><span class="s1">&#39;ing&#39;</span><span class="w"> </span><span class="s1">&#39;ingly&#39;</span><span class="w"></span>
 <span class="w">                </span><span class="p">(</span><span class="w"></span>
 <span class="w">                </span><span class="ow">test</span><span class="w"> </span><span class="ow">gopast</span><span class="w"> </span><span class="n">v</span><span class="w">  </span><span class="ow">delete</span><span class="w"></span>
-<span class="w">                </span><span class="ow">test</span><span class="w"> </span><span class="ow">substring</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;bl&#39;</span><span class="w"> </span><span class="s1">&#39;iz&#39;</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="o">&lt;+</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;bb&#39;</span><span class="w"> </span><span class="s1">&#39;dd&#39;</span><span class="w"> </span><span class="s1">&#39;ff&#39;</span><span class="w"> </span><span class="s1">&#39;gg&#39;</span><span class="w"> </span><span class="s1">&#39;mm&#39;</span><span class="w"> </span><span class="s1">&#39;nn&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;rr&#39;</span><span class="w"> </span><span class="s1">&#39;tt&#39;</span><span class="w"></span>
-<span class="w">                    </span><span class="c1">// ignoring double c, h, j, k, q, v, w, and x</span><span class="w"></span>
-<span class="w">                         </span><span class="p">(</span><span class="o">[</span><span class="ow">next</span><span class="o">]</span><span class="w">  </span><span class="ow">delete</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="s1">&#39;&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">atmark</span><span class="w"> </span><span class="n">p1</span><span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="n">shortv</span><span class="w">  </span><span class="o">&lt;+</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="o">[]</span><span class="w"> </span><span class="ow">test</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">                    </span><span class="ow">substring</span><span class="w"> </span><span class="kr">among</span><span class="p">(</span><span class="w"></span>
+<span class="w">                        </span><span class="s1">&#39;at&#39;</span><span class="w"> </span><span class="s1">&#39;bl&#39;</span><span class="w"> </span><span class="s1">&#39;iz&#39;</span><span class="w"></span>
+<span class="w">                             </span><span class="p">(</span><span class="ow">fail</span><span class="p">(</span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">))</span><span class="w"></span>
+<span class="w">                        </span><span class="s1">&#39;bb&#39;</span><span class="w"> </span><span class="s1">&#39;dd&#39;</span><span class="w"> </span><span class="s1">&#39;ff&#39;</span><span class="w"> </span><span class="s1">&#39;gg&#39;</span><span class="w"> </span><span class="s1">&#39;mm&#39;</span><span class="w"> </span><span class="s1">&#39;nn&#39;</span><span class="w"> </span><span class="s1">&#39;pp&#39;</span><span class="w"> </span><span class="s1">&#39;rr&#39;</span><span class="w"> </span><span class="s1">&#39;tt&#39;</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// ignoring double c, h, j, k, q, v, w, and x</span><span class="w"></span>
+<span class="w">                             </span><span class="p">(</span><span class="ow">not</span><span class="w"> </span><span class="p">(</span><span class="n">aeo</span><span class="w"> </span><span class="ow">atlimit</span><span class="p">))</span><span class="w"></span>
+<span class="w">                        </span><span class="s1">&#39;&#39;</span><span class="w">   </span><span class="p">(</span><span class="ow">fail</span><span class="p">(</span><span class="ow">atmark</span><span class="w"> </span><span class="n">p1</span><span class="w">  </span><span class="ow">test</span><span class="w"> </span><span class="n">shortv</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">))</span><span class="w"></span>
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
 <span class="w">                </span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="o">[</span><span class="ow">next</span><span class="o">]</span><span class="w">  </span><span class="ow">delete</span><span class="w"></span>
 <span class="w">            </span><span class="p">)</span><span class="w"></span>
 <span class="w">        </span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="p">)</span><span class="w"></span>
